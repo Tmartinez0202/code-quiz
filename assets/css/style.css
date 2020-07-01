@@ -1,0 +1,17 @@
+.wrapper {
+    text-align: center;
+    
+
+}
+h1{
+    text-decoration: underline;
+    text-decoration-color: blue;
+}
+.timer{
+text-align: right;
+
+}
+.scores{
+text-align: right;
+
+}
