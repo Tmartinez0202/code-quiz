@@ -10,6 +10,7 @@ var submitBtn = document.getElementById("submit");
 var startBtn = document.getElementById("start");
 var initialsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
+var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
 
 function startQuiz() {
@@ -17,6 +18,7 @@ function startQuiz() {
 
 timerId = setInterval(clockTick, 1000);
 timerEl.textContent = time;
+document.getElementById("start-screen").setAttribute("class", "hide");
 getQuestion();
 
 };
@@ -73,9 +75,23 @@ function questionClick() {
 function quizEnd() {
     clearInterval(timerId);
     //where you can hide questions and show end screen
+    document.getElementById("questions").setAttribute("class", "hide");
+    document.getElementById("end-screen").setAttribute("class", "");
     var finalScoreEl = document.getElementById("final-score");
     finalScoreEl.textContent = time;
+    
 };
-//if you want to make a function to save high score to local storage
+
+submitBtn.onclick = function (event) {
+    var initials = document.getElementById("initials").value;
+    var score = {
+        initials: initials,
+        score: time
+    }
+    highScores.push(score);
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+
+}  
+
 
 startBtn.onclick = startQuiz
